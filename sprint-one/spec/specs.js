@@ -16,6 +16,7 @@ define([
   mocha.setup('bdd');
   var expect = chai.expect;
 
+  // for(var i=0; i < 200; i++){
   describe("stack", function() {
 
     var stack;
@@ -160,7 +161,7 @@ define([
     });
 
   });
-
+// }
 
   window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
 });
