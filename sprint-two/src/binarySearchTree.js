@@ -34,7 +34,6 @@ treeStack.insert = function(val) {
     } else {
         leftOrRight(val, treeStack);
     }
-    console.log(treeStack);
 };
 
 treeStack.contains = function(x) {
