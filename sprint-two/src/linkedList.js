@@ -4,10 +4,8 @@ var makeLinkedList = function(){
   list.tail = null;
 
   list.addToTail = function(value){
-        // console.log("Before: ", list.head);
     if(list.head === null){
         list.head = makeNode(value);
-        // console.log("After: ", list.head);
       }
     if(list.head.next === null && list.tail === null) {
         list.head.next = list.tail;
@@ -15,36 +13,38 @@ var makeLinkedList = function(){
          list.head.next = list.tail;
        }
     list.tail = makeNode(value);
-    //console.log("Tail: ", list.tail);
 
   };
 
   list.removeHead = function(){
-        console.log("Before: ", list.head);
-        // console.log("Before(Obj): ", list);
         var oldHead = list.head;
         var newHead = list.tail;
         delete list.head;
-        // console.log("NewHead: ", newHead);
         list.head = newHead;
-        // console.log("After: ", list.head);
-        // return oldHead;
+        return oldHead.value; // New Code: We do need to return the value we are deleting
   };
 
   list.contains = function(target){
-    // return list.target;
-  };
 
+      var containsTarget = false;
+      // return true if any of the values = target
+      // this should be done recursively but for the moment, I'm going to check value of the head and tail
+      // doing this recurseively would just tag .next to each successive link
+      if(list.head.value === target) {
+        containsTarget = true;
+      }
+      if(list.tail.value === target) {
+        containsTarget = true;
+      }
+      return containsTarget;
+  };
   return list;
 };
 
 var makeNode = function(value){
   var node = {};
-
   node.value = value;
   node.next = null;
-  // node.next = arguments[1] || null;
-
   return node;
 };
 
