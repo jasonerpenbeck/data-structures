@@ -11,11 +11,10 @@ Graph.prototype.addNode = function(newNode, toNode){
     } else {
       this.storage[newNode] = {name: newNode, relationships: []};
     }
-    //Start here
-    // if args is 2 then do this:
-  // this.storage[fromNode].relationships.push(toNode);
-  // this.storage[toNode].relationships.push(fromNode);
-    // console.log(this.storage);
+    if(arguments.length > 1){
+      this.storage[newNode].relationships.push(toNode);
+      this.storage[toNode].relationships.push(newNode);
+    }
 };
 
 Graph.prototype.contains = function(node){
