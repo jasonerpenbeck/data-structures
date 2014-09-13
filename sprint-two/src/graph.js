@@ -3,7 +3,6 @@ this.storage = {};
 };
 
 Graph.prototype.addNode = function(newNode, toNode){
-    // console.log(newNode, toNode);
     if(_.keys(this.storage).length === 1) {
       var firstNode = _.keys(this.storage)[0];
       this.storage[newNode] = {name: newNode, relationships: [firstNode]};
@@ -12,8 +11,7 @@ Graph.prototype.addNode = function(newNode, toNode){
       this.storage[newNode] = {name: newNode, relationships: []};
     }
     if(arguments.length > 1){
-      this.storage[newNode].relationships.push(toNode);
-      this.storage[toNode].relationships.push(newNode);
+      this.addEdge(newNode, toNode);
     }
 };
 
@@ -42,16 +40,27 @@ Graph.prototype.getEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-
-  // this.storage[fromNode].relationships.push(toNode);
-  // this.storage[toNode].relationships.push(fromNode);
-
+  this.storage[fromNode].relationships.push(toNode);
+  this.storage[toNode].relationships.push(fromNode);
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
+  if(this.storage[fromNode].relationships.indexOf(toNode) !== -1){
+    var index1 = this.storage[fromNode].relationships.indexOf(toNode);
+    this.storage[fromNode].relationships.splice(index1,1);
+    var index2 = this.storage[toNode].relationships.indexOf(fromNode);
+    this.storage[toNode].relationships.splice(index2,1);
+  }
+  if(this.storage[fromNode].relationships.length === 0){
+    this.removeNode(fromNode);
+  }
+  if(this.storage[toNode].relationships.length === 0){
+    this.removeNode(toNode);
+  }
 };
 
 Graph.prototype.forEachNode = function(fromNode, toNode){
+
 };
 
 /*
