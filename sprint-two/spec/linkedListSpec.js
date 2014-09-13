@@ -5,9 +5,11 @@ describe('linkedList', function() {
     linkedList = makeLinkedList();
   });
 
-  it('should have a head and tail', function() {
+  it('should have a head, tail, previous and prent properties', function() {
     expect(linkedList).to.have.property("head");
     expect(linkedList).to.have.property("tail");
+    expect(linkedList).to.have.property("previous");
+    expect(linkedList).to.have.property("parent");
   });
 
   it('should have methods named "addToTail", "removeHead", and "contains"', function() {
@@ -51,5 +53,19 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+    it('should add to the end of the list ', function(){
+    linkedList.addToHead(4);
+    expect(linkedList.contains(4)).to.equal(false);
+  });
+
+    it('should remove a the tail', function(){
+    linkedList.addToTail(4);
+    expect(linkedList.removeTail(4)).to.equal(4);
+  });
+
+    it('should disassociates a tree from its parents', function(){
+    // linkedList.addToTail(4);
+    // expect(linkedList.removeTail(4)).to.equal(4);
+  });
   // add more tests here to test the functionality of linkedList
 });

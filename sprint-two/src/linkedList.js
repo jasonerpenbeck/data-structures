@@ -2,6 +2,8 @@ var makeLinkedList = function(){
   var list = {};
   list.head = null;
   list.tail = null;
+  list.previous = null;
+  list.parent = null;
 
   list.addToTail = function(value){
     if(list.head === null){
@@ -13,6 +15,29 @@ var makeLinkedList = function(){
          list.head.next = list.tail;
        }
     list.tail = makeNode(value);
+  };
+
+  list.addHead = function(value){
+    //takes value and adds it to the end if a list
+    if(list.head === null){
+        list.head = makeNode(value);
+      } else {
+        list.previous = list.head;
+        list.head = makeNode(value);
+      }
+  };
+  
+  list.removeTail = function(){
+    //remove the last node from list and return the value
+        var oldTail = list.tail;
+        var newTail = list.tail;
+        delete list.tail;
+        list.tail = newTail;
+        return oldTail.value;
+  };
+
+  list.removeFromParent = function(){
+    //disassociates the tree with its parent (in both directions)
 
   };
 
