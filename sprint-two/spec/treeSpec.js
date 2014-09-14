@@ -41,4 +41,12 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+    it('should be able to traverse the tree and call a function', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(6);
+    tree.traverse(function(n) {return n.value += 1;});
+    expect(tree.children[0].children[0].value).to.equal(7);
+  });
+
+
 });
